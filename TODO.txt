@@ -1,5 +1,3 @@
-<arbitrary change>
-
 Game Features
 =============
 

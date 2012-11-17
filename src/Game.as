@@ -10,17 +10,18 @@ package
 	public class Game extends World 
 	{
 		private var floor:Entity;
-		private var _camera:Camera;
+		//private var _camera:Camera;
 		private const _soft:Sfx = new Sfx(A.sndSOFT, SwitchMode);
 		private const _hard:Sfx = new Sfx(A.sndHARD, SwitchMode);
-		private var _safe:Boolean;
+		private static var _safe:Boolean;
 		
-		public function get safe():Boolean { return _safe; }
+		public static function get safe():Boolean { return _safe; }
 
 		public function Game() 
 		{
 			floor = addGraphic(new Image(new BitmapData(FP.screen.width, 64, false, 0)), 0, 0, FP.height - 64);
-			_camera = new Camera(this);
+			floor.type = A.typSOLID;
+			//_camera = new Camera(this);
 			_safe = true;
 
 			_soft.play();
@@ -38,7 +39,7 @@ package
 			txt = (_safe ? "Safe" : "Uhoh");
 			FP.console.log(txt);
 
-			_camera.Update();
+			//_camera.Update();
 		}
 
 		private function SwitchMode():void
