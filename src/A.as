@@ -12,6 +12,10 @@ package
 
 		// collision types
 		static public const typPLAYER:String = "player";
+		static public const typPLAYERATTACK1:String = "pattack1";
+		static public const typPLAYERATTACK2:String = "pattack2";
+		static public const typENEMYATTACK1:String = "eattack1";
+		static public const typENEMYATTACK2:String = "eattack2";
 		static public const typSOLID:String = "solid";
 		static public const typENEMY:String = "enemy";
 

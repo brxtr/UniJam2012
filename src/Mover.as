@@ -18,14 +18,7 @@ package
 			_acc = new Point(0,0);
 		}
 
-		override public function update():void
-		{
-			_vel.add(_acc);
-			x += _vel.x;
-			y += _vel.y;
-		}
-
-		protected function move():void
+		protected function Move():void
 		{
 			for (var i:int = 0; i < Math.abs(vel.x); i ++)
 			{

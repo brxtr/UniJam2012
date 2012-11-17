@@ -50,7 +50,19 @@ package
 			if (!Input.check("jump") && vel.y < 0) vel.y += acc.y;
 			vel.y += acc.y;
 			
-			move();
+			Move();
+
+			if(!Input.check("left") && !Input.check("right"))
+			{
+				if (Math.abs(_vel.x) > 0)
+				{
+					_vel.x -= FP.sign(_vel.x)*fric;
+				}
+				else
+				{
+					_vel.x = 0;
+				}
+			}
 			
 			for (var i:int = 0; i < Math.abs(vel.y); i ++)
 			{

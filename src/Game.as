@@ -12,13 +12,15 @@ package
 	{
 		public static const gravity:Number = 0.4;
 
+		public static function get player():Player { return _player; }
 		private static var _safe:Boolean;
 		public static function get safe():Boolean { return _safe; }
 
 		private const _soft:Sfx = new Sfx(A.sndSOFT, SwitchMode);
 		private const _hard:Sfx = new Sfx(A.sndHARD, SwitchMode);
+
 		private var floor:Entity;
-		private var _player:Player;
+		private static var _player:Player;
 		private var _level:Level;
 		private var _enemies:Array;
 		
