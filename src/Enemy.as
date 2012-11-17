@@ -8,12 +8,20 @@ package
 	{
 		public function Enemy(x:int, y:int)
 		{
+			super(x,y);
 			width = 20;
 			height = 20;
-			type = "enemy" // Move to A.typENEMY;
+			type = A.typENEMY;
 			var g:Graphic = new Image(new BitmapData(width,height,false,0xFF0000FF));
-			super(x,y);
 			_vel.x = -0.6;
 		}
+
+		override public function update():void
+		{
+			_vel.add(_acc);
+			x += _vel.x;
+			y += _vel.y;
+		}
+			
 	}
 }

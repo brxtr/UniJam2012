@@ -13,7 +13,7 @@ package
 			width = FP.width;
 			x = 0;
 			y = FP.height - height;
-			type = "solid"; //Change this to typSOLID;
+			type = A.typSOLID; //Change this to typSOLID;
 
 			graphic = new Image(new BitmapData(width,height,false,0x887766FF));
 		}
@@ -21,7 +21,6 @@ package
 		override public function update():void
 		{
 			x = FP.camera.x;
-			FP.console.log(x - FP.camera.x);
 		}
 	}
 }

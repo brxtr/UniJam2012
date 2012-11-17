@@ -13,6 +13,7 @@ package
 		// collision types
 		static public const typPLAYER:String = "player";
 		static public const typSOLID:String = "solid";
+		static public const typENEMY:String = "enemy";
 
 		// graphic layers
 		// static public const lyrDEPTH:int = depth;

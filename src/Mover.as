@@ -4,7 +4,6 @@ package
 	import net.flashpunk.Entity;
 	import net.flashpunk.Graphic;
 	import net.flashpunk.Mask;
-	import flash.geom.Point;
 
 	public class Mover extends Entity
 	{
@@ -14,6 +13,8 @@ package
 		public function Mover(x:int = 0, y:int = 0, graphic:Graphic = null, mask:Mask = null)
 		{
 			super(x,y,graphic,mask);
+			_vel = new Point(0,0);
+			_acc = new Point(0,0);
 		}
 
 		override public function update():void

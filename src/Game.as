@@ -25,7 +25,8 @@ package
 
 			_enemies = [];
 
-			_soft.play();
+			//_soft.play();
+			SwitchMode();
 			
 			_player = new Player(FP.width / 2,FP.height / 2);
 
@@ -56,12 +57,10 @@ package
 			if(_safe)
 			{
 				_safe = false;
-				_hard.play();
+				//_hard.play();
 				//Spawn enemies and stuff
 
-				var time:Number = Math.random()*2 + 1;
-
-				FP.alarm(time,SpawnEnemy);
+				SpawnEnemy();
 			}
 			else
 			{
@@ -75,6 +74,10 @@ package
 			var enemy:Enemy = new Enemy(FP.width,FP.height/2);
 			_enemies.push(enemy);
 			add(enemy);
+
+			//Spawn next enemy
+			var time:Number = Math.random()*2 + 1;
+			FP.alarm(time,SpawnEnemy);
 		}
 
 		private function TrackCam():void
