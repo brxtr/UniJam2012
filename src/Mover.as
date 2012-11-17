@@ -8,12 +8,19 @@ package
 
 	public class Mover extends Entity
 	{
-		private var _vel:Point;
-		private var _acc:Point;
+		protected var _vel:Point;
+		protected var _acc:Point;
 
 		public function Mover(x:int = 0, y:int = 0, graphic:Graphic = null, mask:Mask = null)
 		{
 			super(x,y,graphic,mask);
+		}
+
+		override public function update():void
+		{
+			_vel.add(_acc);
+			x += _vel.x;
+			y += _vel.y;
 		}
 
 		public function set vel(vel:Point):void { _vel = vel; }

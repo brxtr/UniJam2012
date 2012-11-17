@@ -10,8 +10,10 @@ package
 		{
 			width = 20;
 			height = 20;
-			var g:Graphic = new Image(BitmapData(width,height,false,0xFF0000FF));
+			type = "enemy" // Move to A.typENEMY;
+			var g:Graphic = new Image(new BitmapData(width,height,false,0xFF0000FF));
 			super(x,y);
+			_vel.x = -0.6;
 		}
 	}
 }
