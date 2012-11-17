@@ -3,6 +3,7 @@ package
 	import flash.display.BitmapData;
 	import net.flashpunk.Graphic;
 	import net.flashpunk.graphics.Image;
+	import net.flashpunk.FP;
 
 	public class Enemy extends Mover
 	{
@@ -12,15 +13,18 @@ package
 			width = 20;
 			height = 20;
 			type = A.typENEMY;
-			var g:Graphic = new Image(new BitmapData(width,height,false,0xFF0000FF));
-			_vel.x = -0.6;
+			graphic = new Image(new BitmapData(width,height,false,0xFF7766FF));
+			_vel.x = -1.0;
+			_acc.y = Game.gravity;
 		}
 
 		override public function update():void
 		{
-			_vel.add(_acc);
-			x += _vel.x;
-			y += _vel.y;
+			//Adjust speed
+			_vel.x += _acc.x;
+			_vel.y += _acc.y;
+
+			move();
 		}
 			
 	}
