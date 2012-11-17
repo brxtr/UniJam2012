@@ -1,5 +1,6 @@
 package
 {
+	import flash.geom.Point;
 	import net.flashpunk.Entity;
 	import net.flashpunk.Graphic;
 	import net.flashpunk.Mask;
@@ -9,7 +10,7 @@ package
 		private var _vel:Point;
 		private var _acc:Point;
 
-		public function Mover(x:int = 0,y:int = 0,graphic:Graphic = NULL,mask:Mask = NULL)
+		public function Mover(x:int = 0,y:int = 0,graphic:Graphic = null,mask:Mask = null)
 		{
 			super(x,y,graphic,mask);
 		}

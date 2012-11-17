@@ -7,7 +7,8 @@ package
 		// [Embed(source = '../assets/graphics/graphic.png')] static public const gfxGRAPHIC:Class;
 
 		// audio
-		// [Embed(source = '../assets/audio/sound.mp3')] static public const sndSOUND:Class;
+		[Embed(source = '../assets/audio/soft.mp3')] static public const sndSOFT:Class;
+		[Embed(source = '../assets/audio/hard.mp3')] static public const sndHARD:Class;
 
 		// collision types
 		// static public const typOBJECT:String = "object";
