@@ -1,0 +1,6 @@
+(For FlashDevelop users (i.e. Jack and Ben))
+
+- Add "-frame start Main" to PROJECT > PROPERTIES > COMPILER OPTIONS > ADVANCED > ADDITIONAL COMPILER OPTIONS
+- Set Preloader.as as Document Class
+
+<arbitrary change>
