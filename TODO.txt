@@ -16,10 +16,16 @@ Updates spawn enemies if !safe
 Different behavior based on safety/danger
 Needs two different max-speeds, one for running, one for walking
 
-
 Music!
 ======
-I think Ben knows what he's doing 
+I think Ben knows what he's doing
+
+Sound effects
+=============
+- Taking damage
+- Jump
+- Swing
+- Strum
 
 Graphics
 ========
@@ -63,8 +69,3 @@ Backdrop:
     Distant hills, darker (Could do dynamically)
 
 Enemies - To be decided
-
-(For FlashDevelop users (i.e. Jack and Ben))
-
-- Add "-frame start Main" to PROJECT > PROPERTIES > COMPILER OPTIONS > ADVANCED > ADDITIONAL COMPILER OPTIONS
-- Set Preloader.as as Document Class
