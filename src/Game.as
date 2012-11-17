@@ -21,6 +21,7 @@ package
 		{
 			floor = addGraphic(new Image(new BitmapData(FP.screen.width, 64, false, 0)), 0, 0, FP.height - 64);
 			floor.type = A.typSOLID;
+			floor.setHitbox(FP.screen.width, 64);
 			//_camera = new Camera(this);
 			_safe = true;
 

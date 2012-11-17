@@ -2,7 +2,6 @@ package
 {
 	import flash.display.BitmapData;
 	import flash.geom.Point;
-	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.utils.Input;
@@ -12,7 +11,7 @@ package
 	{
 		private var spr:Image = new Image(new BitmapData(64, 96, false, 0));
 		
-		private var jump:Number = -5;
+		private var jump:Number = -12;
 		private var fric:Number = 2;
 		private var maxWalk:Number = 4, maxRun:Number = 8; // max walking and running
 		
@@ -22,7 +21,7 @@ package
 			this.y = y;
 			
 			vel = new Point(0, 0);
-			acc = new Point(0.1, 10);
+			acc = new Point(0.5, 0.4);
 			
 			// TODO: change to spritemap and add animations
 			
@@ -67,7 +66,7 @@ package
 			{
 				if (!collide(A.typSOLID, x, y + FP.sign(vel.y)))
 				{
-					y += vel.y;
+					y += FP.sign(vel.y);
 				}
 				else
 				{
