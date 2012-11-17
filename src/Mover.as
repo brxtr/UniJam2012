@@ -3,13 +3,14 @@ package
 	import net.flashpunk.Entity;
 	import net.flashpunk.Graphic;
 	import net.flashpunk.Mask;
+	import flash.geom.Point;
 
 	public class Mover extends Entity
 	{
 		private var _vel:Point;
 		private var _acc:Point;
 
-		public function Mover(x:int = 0,y:int = 0,graphic:Graphic = NULL,mask:Mask = NULL)
+		public function Mover(x:int = 0, y:int = 0, graphic:Graphic = null, mask:Mask = null)
 		{
 			super(x,y,graphic,mask);
 		}
