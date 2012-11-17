@@ -6,41 +6,49 @@ package
 	import net.flashpunk.World;
 	import net.flashpunk.Sfx;
 	import net.flashpunk.FP;
+	import net.flashpunk.tweens.misc.Alarm
 	
 	public class Game extends World 
 	{
 		private var floor:Entity;
-		//private var _camera:Camera;
 		private const _soft:Sfx = new Sfx(A.sndSOFT, SwitchMode);
 		private const _hard:Sfx = new Sfx(A.sndHARD, SwitchMode);
 		private static var _safe:Boolean;
+		private var _player:Player;
+		private var _enemies:Array;
 		
 		public static function get safe():Boolean { return _safe; }
 
 		public function Game() 
 		{
-			floor = addGraphic(new Image(new BitmapData(FP.screen.width, 64, false, 0)), 0, 0, FP.height - 64);
-			floor.type = A.typSOLID;
-			floor.setHitbox(FP.screen.width, 64);
-			//_camera = new Camera(this);
 			_safe = true;
+
+			_enemies = [];
 
 			_soft.play();
 			
-			add(new Player(FP.width / 2, FP.height - 160));
+			_player = new Player(FP.width / 2,FP.height / 2);
+
+			add(_player);
+			add(new Level());
 		}
 		
 		override public function update():void
 		{
+			//Enemy stuff
+			for(var index:String in _enemies)
+			{
+				if(_enemies[index].x + _enemies[index].width < FP.camera.x)
+				{
+					remove(_enemies[index]); 
+					_enemies[index] = undefined;
+				}
+			}
+			FP.remove(_enemies,undefined)
+			//end enemy stuff
+
+			TrackCam();
 			super.update();
-			
-			floor.x = FP.camera.x;
-
-			var txt:String;
-			txt = (_safe ? "Safe" : "Uhoh");
-			FP.console.log(txt);
-
-			//_camera.Update();
 		}
 
 		private function SwitchMode():void
@@ -49,13 +57,30 @@ package
 			{
 				_safe = false;
 				_hard.play();
+				//Spawn enemies and stuff
+
+				var time:Number = Math.random()*2 + 1;
+
+				FP.alarm(time,SpawnEnemy);
 			}
 			else
 			{
-				//Spawn enemies and stuff
 				_safe = true;
 				_soft.play();
 			}
+		}
+
+		private function SpawnEnemy():void
+		{
+			var enemy:Enemy = new Enemy(FP.width,FP.height/2);
+			_enemies.push(enemy);
+			add(enemy);
+		}
+
+		private function TrackCam():void
+		{
+			FP.camera.x = _player.x;
+			//FP.camera.y = _player.y;
 		}
 	} 
 }
