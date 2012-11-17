@@ -1,0 +1,65 @@
+Game Features
+=============
+
+- Music-fueled gameplay: player moves slowly in "Safe" mode and runs when in
+  "danger" mode
+- Animated player with numerous attacks
+- Animated enemies with attacks
+- Multi-layered parallax background
+- Different enemy types
+
+=Game=
+public read-only "safe" bool changed by music callbacks
+Updates spawn enemies if !safe
+
+=Player=
+Different behavior based on safety/danger
+Needs two different max-speeds, one for running, one for walking
+
+
+Music!
+======
+I think Ben knows what he's doing 
+
+Graphics
+========
+=Main Menu=
+Title screen
+Ploy button.
+Sorry, play.
+Credits
+
+=Ingame=
+Player sprite
+-------------
+  "Safe"
+    Walking & playing guitar animation
+    Switch to danger mode
+  "Danger"
+    Running and swinging guitar over head
+    Jumping
+    Attack animations
+      Standard melee - Guitar swing
+      Standard range - Guitar strum
+      Jump melee - Swing overhead
+      Jump range - Guitar pick throw
+    
+Guitar pick flying
+Guitar pick "mine" mode
+
+Main terrain
+  Gnarly countryside landscape
+
+Backdrop:
+  Safety
+    Yellow sun?
+    White clouds
+    Dark background, but less red
+    Distant hills
+  Danger
+    Light-grey clouds (to be darkened dynamically)
+    Red sun
+    Dark red sky 
+    Distant hills, darker (Could do dynamically)
+
+Enemies - To be decided
