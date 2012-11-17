@@ -10,14 +10,18 @@ package
 	
 	public class Game extends World 
 	{
-		private var floor:Entity;
+		public static const gravity:Number = 0.4;
+
+		private static var _safe:Boolean;
+		public static function get safe():Boolean { return _safe; }
+
 		private const _soft:Sfx = new Sfx(A.sndSOFT, SwitchMode);
 		private const _hard:Sfx = new Sfx(A.sndHARD, SwitchMode);
-		private static var _safe:Boolean;
+		private var floor:Entity;
 		private var _player:Player;
+		private var _level:Level;
 		private var _enemies:Array;
 		
-		public static function get safe():Boolean { return _safe; }
 
 		public function Game() 
 		{
@@ -29,9 +33,10 @@ package
 			SwitchMode();
 			
 			_player = new Player(FP.width / 2,FP.height / 2);
+			_level = new Level();
 
 			add(_player);
-			add(new Level());
+			add(_level);
 		}
 		
 		override public function update():void
@@ -48,16 +53,17 @@ package
 			FP.remove(_enemies,undefined)
 			//end enemy stuff
 
-			TrackCam();
 			super.update();
+			TrackCam();
 		}
+
 
 		private function SwitchMode():void
 		{
 			if(_safe)
 			{
 				_safe = false;
-				//_hard.play();
+				_hard.play();
 				//Spawn enemies and stuff
 
 				SpawnEnemy();
@@ -71,7 +77,7 @@ package
 
 		private function SpawnEnemy():void
 		{
-			var enemy:Enemy = new Enemy(FP.width,FP.height/2);
+			var enemy:Enemy = new Enemy(FP.camera.x + FP.width, FP.height/2);
 			_enemies.push(enemy);
 			add(enemy);
 

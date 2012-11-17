@@ -14,14 +14,14 @@ package
 		private var jump:Number = -12;
 		private var fric:Number = 2;
 		private var maxWalk:Number = 4, maxRun:Number = 8; // max walking and running
-		
+	
 		public function Player(x:int, y:int)
 		{
 			this.x = x;
 			this.y = y;
 			
 			vel = new Point(0, 0);
-			acc = new Point(0.5, 0.4);
+			acc = new Point(0.5, Game.gravity);
 			
 			// TODO: change to spritemap and add animations
 			
@@ -50,19 +50,9 @@ package
 			if (!Input.check("jump") && vel.y < 0) vel.y += acc.y;
 			vel.y += acc.y;
 			
-			for (var i:int = 0; i < Math.abs(vel.x); i ++)
-			{
-				if (!collide(A.typSOLID, x + FP.sign(vel.x), y))
-				{
-					x += FP.sign(vel.x);
-				}
-				else
-				{
-					vel.x = 0;
-				}
-			}
+			move();
 			
-			for (i = 0; i < Math.abs(vel.y); i ++)
+			for (var i:int = 0; i < Math.abs(vel.y); i ++)
 			{
 				if (!collide(A.typSOLID, x, y + FP.sign(vel.y)))
 				{
@@ -71,20 +61,6 @@ package
 				else
 				{
 					vel.y = 0;
-				}
-			}
-			
-			if (!Input.check("left") && !Input.check("right"))
-			{
-				if (vel.x > 0)
-				{
-					vel.x -= fric;
-					if (vel.x < 0) vel.x = 0;
-				}
-				if (vel.x < 0)
-				{
-					vel.x += fric;
-					if (vel.x > 0) vel.x = 0;
 				}
 			}
 			
