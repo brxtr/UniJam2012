@@ -13,7 +13,8 @@ package
 		
 		override public function init():void 
 		{
-			FP.world = new Game;
+			FP.world = new Title;
+			FP.screen.color = 0x3A3323;
 			FP.console.enable();
 		}
 		
