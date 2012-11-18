@@ -8,12 +8,13 @@ package
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;
 	import net.flashpunk.graphics.Spritemap;
+	import net.flashpunk.graphics.Image;
 
 	public class Player extends Mover 
 	{
 		private var _life:int;
 		
-		private var spr:Image = new Image(A.gfxPLAYER);
+		private var sprJump:Image = new Image(A.gfxPLAYERJUMP);
 		private var sprRun:Spritemap = new Spritemap(A.gfxPLAYERRUN, 74, 107);
 		private var sprIdle:Spritemap = new Spritemap(A.gfxPLAYERIDLE, 78, 96);
 		private var sprAttack1:Spritemap = new Spritemap(A.gfxPLAYERATTACK1, 156, 103);
@@ -55,6 +56,7 @@ package
 			sprAttack1.add("attack1", [0, 1, 2, 3, 4, 5, 6, 7], 30,false);
 			sprStrum.add("strum", [0, 1], 12);
 			
+			// initial graphic
 			graphic = sprIdle;
 			sprIdle.play("idle");
 			
@@ -66,7 +68,7 @@ package
 			Input.define("left", Key.LEFT, Key.A);
 			Input.define("right", Key.RIGHT, Key.D);
 			Input.define("melee", Key.SHIFT, Key.X);
-			Input.define("melee", Key.CONTROL, Key.C);
+			Input.define("ranged", Key.CONTROL, Key.C);
 		}
 		
 		override public function update():void
@@ -89,17 +91,19 @@ package
 					_vel.x += _acc.x;
 					_xDir = 1;
 				}
-			}
 			
 			if(collide(A.typSOLID, x, y + 1))
 			{
 				if(_jumping)
 				{
 					_jumping = false;
+					graphic = sprIdle;
+					sprIdle.play("idle");
 				}
 				if (Input.pressed("jump"))
 				{
 					Jump();
+					graphic = sprJump;
 				}
 			}
 
