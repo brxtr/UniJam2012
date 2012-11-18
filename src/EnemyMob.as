@@ -13,6 +13,7 @@ package
 			super(x, y);
 			
 			graphic = a;
+			_life = 1;
 			
 			setHitbox(a.width, a.height);
 		}
@@ -21,8 +22,7 @@ package
 		{
 			//super.update();
 			
-			_vel.x = GetDirectionToPlayer() * 6;
-			
+			_vel.x = GetDirectionToPlayer() * 6; 
 			_vel.y += _acc.y;
 			
 			Move();
