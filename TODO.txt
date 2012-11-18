@@ -1,3 +1,15 @@
+--------------------------------------------------------------+
+                                                              |
+OVERVIEW:                                                     |
+- Enemies (attack, defend via specific nuances)               |
+- Safe/danger (enemy behaviour, player speed, music, visuals) |
+- Attack combinations                                         |
+- Scoring/death                                               |
+- Title screen                                                |
+- Sound effects (take damage, jump, attack (swing, strum))    |
+                                                              |
+--------------------------------------------------------------+
+
 Game Features
 =============
 
