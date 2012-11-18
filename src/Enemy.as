@@ -60,7 +60,6 @@ package
 					return true;
 				}
 			}
-
 			return false;
 		}
 

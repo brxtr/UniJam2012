@@ -20,11 +20,11 @@ package
 
 		protected function Move():void
 		{
-			for (var i:int = 0; i < Math.abs(vel.x); i ++)
+			for (var i:int = 0; i < Math.abs(_vel.x); i ++)
 			{
-				if (!collide(A.typSOLID, x + FP.sign(vel.x), y))
+				if (!collide(A.typSOLID, x + FP.sign(_vel.x), y))
 				{
-					x += FP.sign(vel.x);
+					x += FP.sign(_vel.x);
 				}
 				else
 				{
@@ -32,11 +32,11 @@ package
 				}
 			}
 			
-			for (i = 0; i < Math.abs(vel.y); i ++)
+			for (i = 0; i < Math.abs(_vel.y); i ++)
 			{
-				if (!collide(A.typSOLID, x, y + FP.sign(vel.y)))
+				if (!collide(A.typSOLID, x, y + FP.sign(_vel.y)))
 				{
-					y += FP.sign(vel.y);
+					y += FP.sign(_vel.y);
 				}
 				else
 				{

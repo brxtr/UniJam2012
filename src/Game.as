@@ -11,6 +11,7 @@ package
 	public class Game extends World 
 	{
 		public static const gravity:Number = 0.4;
+		public static const friction:Number = 2;
 
 		public static function get player():Player { return _player; }
 		private static var _safe:Boolean;
@@ -44,7 +45,7 @@ package
 		override public function update():void
 		{
 			//Enemy stuff
-			/*for(var index:String in _enemies)
+			for(var index:String in _enemies)
 			{
 				if(_enemies[index].x + _enemies[index].width < FP.camera.x)
 				{
@@ -52,7 +53,7 @@ package
 					_enemies[index] = undefined;
 				}
 			}
-			FP.remove(_enemies,undefined)*/
+			FP.remove(_enemies,undefined)
 			//end enemy stuff
 
 			super.update();
@@ -79,13 +80,13 @@ package
 
 		private function SpawnEnemy():void
 		{
-		/*	var enemy:Enemy = new Enemy(FP.camera.x + FP.width, FP.height/2);
+			var enemy:Enemy = new Enemy(FP.camera.x + FP.width, FP.height/2);
 			_enemies.push(enemy);
 			add(enemy);
 
 			//Spawn next enemy
 			var time:Number = Math.random()*2 + 1;
-			FP.alarm(time,SpawnEnemy);*/
+			FP.alarm(time,SpawnEnemy);
 		}
 
 		private function TrackCam():void
