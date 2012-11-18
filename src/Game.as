@@ -57,6 +57,7 @@ package
 			add(_backdrop);
 			add(_level);
 			add(_player);
+			add(new HUD);
 
 			if(_firstGame)
 			{

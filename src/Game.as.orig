@@ -3,6 +3,7 @@ package
 	import flash.display.BitmapData;
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Image;
+	import net.flashpunk.graphics.Text;
 	import net.flashpunk.World;
 	import net.flashpunk.Sfx;
 	import net.flashpunk.FP;
@@ -13,16 +14,28 @@ package
 		public static const gravity:Number = 0.4;
 		public static const friction:Number = 2;
 
+		private static var _firstGame:Boolean = true;
+
+		public static var score:int;
 		public static function get player():Player { return _player; }
 		private static var _safe:Boolean;
 		public static function get safe():Boolean { return _safe; }
 
-		private const _soft:Sfx = new Sfx(A.sndSOFT, SwitchMode);
-		private const _hard:Sfx = new Sfx(A.sndHARD, SwitchMode);
+		private static var _tutText:Text;
+
+		private static var _player:Player;
+
+		private const _soft1:Sfx = new Sfx(A.sndSOFT1, SwitchMode);
+		private const _soft2:Sfx = new Sfx(A.sndSOFT2, SwitchMode);
+		private const _hard1:Sfx = new Sfx(A.sndHARD1, SwitchMode);
+		private const _hard2:Sfx = new Sfx(A.sndHARD2, Win);
+
+		private const _musArray:Array = [_soft1, _hard1,_soft2,_hard2];
+		private var _currentSong:int = 0;
 
 		private var floor:Entity;
-		private static var _player:Player;
 		private var _level:Level;
+		private var _backdrop:Background;
 		private var _enemies:Array;
 		private var _toRemove:Array;
 		
@@ -34,23 +47,34 @@ package
 			_enemies = [];
 			_toRemove = [];
 
-			//_soft.play();
-			SwitchMode();
+			_musArray[_currentSong].play();
+			//SwitchMode();
 			
 			_player = new Player(FP.width / 2,FP.height / 2);
 			_level = new Level();
 
-			add(_player);
+			_backdrop = new Background();
+			add(_backdrop);
 			add(_level);
+<<<<<<< HEAD
+			add(_player);
+
+			if(_firstGame)
+			{
+				_firstGame = false;
+				_tutText = new Text("WASD + Shift");
+				_tutText.x = (FP.width - _tutText.width) / 2;
+				_tutText.y = (FP.height - _tutText.height) / 2;
+			}
+=======
+			add(new HUD);
+>>>>>>> 2c255e4c2c517dd6a28bfdbeb19ff40436d33f41
 		}
 		
 		override public function update():void
 		{
 			//Enemy stuff
-<<<<<<< HEAD
-=======
 			FP.remove(_enemies,undefined)
->>>>>>> f1f281ec2a088cf51e77017878473318d8c11a2a
 			for(var index:String in _enemies)
 			{
 				if(_enemies[index].x + _enemies[index].width < FP.camera.x)
@@ -58,9 +82,6 @@ package
 					_toRemove.push(_enemies[index]);
 				}
 			}
-<<<<<<< HEAD
-			FP.remove(_enemies,undefined)
-=======
 			
 			while (_toRemove.length != 0)
 			{
@@ -68,20 +89,19 @@ package
 				remove(ent);
 				ent = undefined;
 			}
->>>>>>> f1f281ec2a088cf51e77017878473318d8c11a2a
 			//end enemy stuff
 			
 			super.update();
 			TrackCam();
 		}
 
-
 		private function SwitchMode():void
 		{
+			_backdrop.SwitchGraphics();
+			PlayNextSong();
 			if(_safe)
 			{
 				_safe = false;
-				_hard.play();
 				//Spawn enemies and stuff
 
 				SpawnEnemy();
@@ -89,32 +109,38 @@ package
 			else
 			{
 				_safe = true;
-				_soft.play();
+			} 
+		}
+
+		private function PlayNextSong():void
+		{
+			if(_currentSong < 3)
+			{
+				_musArray[++_currentSong].play();
 			}
 		}
 
 		private function SpawnEnemy():void
 		{
-<<<<<<< HEAD
-			var enemy:Enemy = new Enemy(FP.camera.x + FP.width, FP.height/2);
-=======
-			var enemy:EnemyCymbal = new EnemyCymbal(FP.camera.x + FP.width, FP.height/2);
->>>>>>> f1f281ec2a088cf51e77017878473318d8c11a2a
+			var enemy:Enemy = new EnemyMob(FP.camera.x + FP.width, FP.height/2);
 			_enemies.push(enemy);
 			add(enemy);
 
 			//Spawn next enemy
-			var time:Number = Math.random()*2 + 1;
-<<<<<<< HEAD
-			FP.alarm(time,SpawnEnemy);
-=======
-			FP.alarm(time, SpawnEnemy);
->>>>>>> f1f281ec2a088cf51e77017878473318d8c11a2a
+			if(!_safe)
+			{
+				var time:Number = Math.random()*2 + 1;
+				FP.alarm(time, SpawnEnemy);
+			}
+		}
+
+		private function Win():void
+		{
 		}
 
 		private function TrackCam():void
 		{
-			FP.camera.x = _player.x;
+			FP.camera.x = _player.x - 50;
 			//FP.camera.y = _player.y;
 		}
 	} 
