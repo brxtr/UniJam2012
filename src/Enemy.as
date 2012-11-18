@@ -10,11 +10,13 @@ package
 	{
 		protected var _life:int;
 		protected var _hasHit:Array;
+		protected var _points:int;
 
 		public function Enemy(x:int, y:int)
 		{
 			super(x,y);
 
+			_points = 0;
 			type = A.typENEMY;
 			_hasHit = [];
 			_life = 0;

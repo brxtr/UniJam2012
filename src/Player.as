@@ -12,6 +12,10 @@ package
 
 	public class Player extends Mover 
 	{
+		public static var player:Player;
+
+		public function get life():int { return _life; }
+
 		private var _life:int;
 		
 		private var sprJump:Image = new Image(A.gfxPLAYERJUMP);
@@ -40,6 +44,7 @@ package
 
 		public function Player(x:int, y:int)
 		{
+			player = this;
 			this.x = x;
 			this.y = y;
 			

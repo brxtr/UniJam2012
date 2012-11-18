@@ -53,6 +53,7 @@ package
 				playText.color = 0xD97D3C;
 				if (Input.mousePressed)
 				{
+					Input.mouseCursor = "auto";
 					FP.world = new Game;
 				}
 			}

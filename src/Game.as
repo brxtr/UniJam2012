@@ -3,6 +3,7 @@ package
 	import flash.display.BitmapData;
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Image;
+	import net.flashpunk.graphics.Text;
 	import net.flashpunk.World;
 	import net.flashpunk.Sfx;
 	import net.flashpunk.FP;
@@ -13,9 +14,14 @@ package
 		public static const gravity:Number = 0.4;
 		public static const friction:Number = 2;
 
+		private static var _firstGame:Boolean = true;
+
+		public static var score:int;
 		public static function get player():Player { return _player; }
 		private static var _safe:Boolean;
 		public static function get safe():Boolean { return _safe; }
+
+		private static var _tutText:Text;
 
 		private static var _player:Player;
 
@@ -49,8 +55,16 @@ package
 
 			_backdrop = new Background();
 			add(_backdrop);
-			add(_player);
 			add(_level);
+			add(_player);
+
+			if(_firstGame)
+			{
+				_firstGame = false;
+				_tutText = new Text("WASD + Shift");
+				_tutText.x = (FP.width - _tutText.width) / 2;
+				_tutText.y = (FP.height - _tutText.height) / 2;
+			}
 		}
 		
 		override public function update():void
@@ -84,7 +98,6 @@ package
 			if(_safe)
 			{
 				_safe = false;
-				_hard1.play();
 				//Spawn enemies and stuff
 
 				SpawnEnemy();
@@ -92,7 +105,6 @@ package
 			else
 			{
 				_safe = true;
-				_soft1.play();
 			} 
 		}
 

@@ -13,6 +13,7 @@ package
 		{
 			super(x, y);
 			
+			_points = 50;
 			type = A.typENEMYATTACK1;
 			sprImp.add("move",[0,1,2,3],12);
 			graphic = sprImp;
@@ -39,6 +40,7 @@ package
 		
 			if (_life <= 0)
 			{
+				Game.score += _points;
 				FP.world.remove(this);
 			}
 		}

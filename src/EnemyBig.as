@@ -12,6 +12,7 @@ package
 		{
 			super(x, y);
 			
+			_points = 150;
 			graphic = a;
 			_life = 5;
 			
@@ -32,6 +33,11 @@ package
 			Move();
 			
 			CheckDamage();		
+
+			if(_life < 0)
+			{
+				Game.score += _points;
+				FP.world.remove(this);
 		} 
 	} 
 }
