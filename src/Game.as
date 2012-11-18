@@ -46,23 +46,14 @@ package
 		override public function update():void
 		{
 			//Enemy stuff
-<<<<<<< HEAD
-			FP.remove(_enemies, undefined)
+			FP.remove(_enemies,undefined)
 			for(var index:String in _enemies)
-=======
-			/*for(var index:String in _enemies)
->>>>>>> 2f9dd6fb8936df5414d7d03dd38f588745d535a5
 			{
 				if(_enemies[index].x + _enemies[index].width < FP.camera.x)
 				{
 					_toRemove.push(_enemies[index]);
 				}
 			}
-<<<<<<< HEAD
-=======
-			FP.remove(_enemies,undefined)*/
->>>>>>> 2f9dd6fb8936df5414d7d03dd38f588745d535a5
-			//end enemy stuff
 			
 			while (_toRemove.length != 0)
 			{
@@ -70,6 +61,8 @@ package
 				remove(ent);
 				ent = undefined;
 			}
+			//end enemy stuff
+			
 			super.update();
 			TrackCam();
 		}
