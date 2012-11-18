@@ -64,18 +64,6 @@ package
 				}
 			}
 			
-			for (var i:int = 0; i < Math.abs(vel.y); i ++)
-			{
-				if (!collide(A.typSOLID, x, y + FP.sign(vel.y)))
-				{
-					y += FP.sign(vel.y);
-				}
-				else
-				{
-					vel.y = 0;
-				}
-			}
-			
 			if (Game.safe)
 			{
 				if (Math.abs(vel.x) > maxWalk) vel.x = FP.sign(vel.x) * maxWalk;

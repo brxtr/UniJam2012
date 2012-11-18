@@ -46,14 +46,22 @@ package
 		override public function update():void
 		{
 			//Enemy stuff
+<<<<<<< HEAD
 			FP.remove(_enemies, undefined)
 			for(var index:String in _enemies)
+=======
+			/*for(var index:String in _enemies)
+>>>>>>> 2f9dd6fb8936df5414d7d03dd38f588745d535a5
 			{
 				if(_enemies[index].x + _enemies[index].width < FP.camera.x)
 				{
 					_toRemove.push(_enemies[index]);
 				}
 			}
+<<<<<<< HEAD
+=======
+			FP.remove(_enemies,undefined)*/
+>>>>>>> 2f9dd6fb8936df5414d7d03dd38f588745d535a5
 			//end enemy stuff
 			
 			while (_toRemove.length != 0)
@@ -86,13 +94,21 @@ package
 
 		private function SpawnEnemy():void
 		{
+<<<<<<< HEAD
 			var enemy:EnemyCymbal = new EnemyCymbal(FP.camera.x + FP.width, FP.height/2);
+=======
+		/*	var enemy:Enemy = new Enemy(FP.camera.x + FP.width, FP.height/2);
+>>>>>>> 2f9dd6fb8936df5414d7d03dd38f588745d535a5
 			_enemies.push(enemy);
 			add(enemy);
 
 			//Spawn next enemy
 			var time:Number = Math.random()*2 + 1;
+<<<<<<< HEAD
 			FP.alarm(time, SpawnEnemy);
+=======
+			FP.alarm(time,SpawnEnemy);*/
+>>>>>>> 2f9dd6fb8936df5414d7d03dd38f588745d535a5
 		}
 
 		private function TrackCam():void
