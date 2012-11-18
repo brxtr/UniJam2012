@@ -35,23 +35,29 @@ package
 			Move();
 		} 
 
-		protected function CheckDamage():void
+		protected function CheckDamage():Boolean
 		{
-			var ent:Entity = collide(A.typPLAYERATTACK1,0,0);
-			if(ent && !HasHit(ent))
+			var ent:Entity = collide(A.typPLAYERATTACK1, 0, 0);
+			var damaged:Boolean = false;
+			
+			if(ent && !HasAlreadyHit(ent))
 			{
+				damaged = true;
 				--_life;
 				_hasHit.push(ent); //Prevent one damage event from counting twice
 			}
 			ent = collide(A.typPLAYERATTACK2,0,0);
-			if(ent && !HasHit(ent))
+			if(ent && !HasAlreadyHit(ent))
 			{
+				damaged = true;
 				_life -= 2;
 				_hasHit.push(ent); //Prevent one damage event from counting twice
-			} 
+			}
+			
+			return damaged;
 		}
 
-		protected function HasHit(ent:Entity):Boolean
+		protected function HasAlreadyHit(ent:Entity):Boolean
 		{
 			for(var i:String in _hasHit)
 			{
@@ -67,7 +73,7 @@ package
 
 		protected function GetDirectionToPlayer():int
 		{
-			return FP.sign(x - Game.player.x);
+			return FP.sign(Game.player.x - x);
 		}
 			
 	}

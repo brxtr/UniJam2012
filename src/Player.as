@@ -10,8 +10,8 @@ package
 
 	public class Player extends Mover 
 	{
-		private var spr:Image = new Image(new BitmapData(64, 96, false, 0));
 		private var _life:int;
+		private var spr:Image = new Image(A.gfxPLAYER);
 		
 		private var _damageRegion:Region;
 		private var _attacking:Boolean;
