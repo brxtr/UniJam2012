@@ -37,7 +37,6 @@ package
 			
 			if(ent && !HasAlreadyHit(ent))
 			{
-			FP.console.log("Lol");
 				damaged = true;
 				--_life;
 				_hasHit.push(ent); //Prevent one damage event from counting twice

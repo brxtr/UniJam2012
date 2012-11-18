@@ -21,8 +21,10 @@ package
 		[Embed(source = '../assets/graphics/DarkBackground.png')] static public const gfxDARKBACKGROUND:Class;
 
 		// audio
-		[Embed(source = '../assets/audio/Calm1.mp3')] static public const sndSOFT:Class;
-		[Embed(source = '../assets/audio/PowerShort.mp3')] static public const sndHARD:Class;
+		[Embed(source = '../assets/audio/Calm1.mp3')] static public const sndSOFT1:Class;
+		[Embed(source = '../assets/audio/Calm2.mp3')] static public const sndSOFT2:Class;
+		[Embed(source = '../assets/audio/PowerShort.mp3')] static public const sndHARD1:Class;
+		[Embed(source = '../assets/audio/PowerLong.mp3')] static public const sndHARD2:Class;
 
 		// collision types
 		static public const typPLAYER:String = "player";

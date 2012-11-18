@@ -7,8 +7,8 @@ package
 
 	public class Backdrop extends Entity
 	{
-		private var _otherList:Graphiclist = new Graphiclist();
-		private var _currentList:Graphiclist = new Graphiclist();
+		private var _darkList:Graphiclist = new Graphiclist();
+		private var _lightList:Graphiclist = new Graphiclist();
 		private var _both:Graphiclist;
 
 		private var hillNear:Image = new Image(A.gfxHILLNEAR);
@@ -49,14 +49,14 @@ package
 			background.y = backgroundDark.y = gY;
 			background.scrollX = backgroundDark.scrollX = scrollX;
 			background.scrollY = backgroundDark.scrollY = scrollY;
-			_currentList.add(background);
-			_otherList.add(backgroundDark);
-			_currentList.add(hillFar);
-			_otherList.add(hillFarDark);
-			_currentList.add(hillNear);
-			_otherList.add(hillNearDark);
+			_lightList.add(background);
+			_darkList.add(backgroundDark);
+			_lightList.add(hillFar);
+			_darkList.add(hillFarDark);
+			_lightList.add(hillNear);
+			_darkList.add(hillNearDark);
 
-			graphic = _currentList;
+			graphic = _lightList;
 		}
 
 		override public function update():void
@@ -64,6 +64,19 @@ package
 			if(_switching = true)
 			{
 				//Do stuff
+			}
+		}
+
+		public function SwitchGraphics():void
+		{
+			if(graphic == _lightList)
+			{
+				
+				graphic = _darkList;
+			}
+			else
+			{
+				graphic = _lightList;
 			}
 		}
 
