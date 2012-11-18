@@ -7,8 +7,8 @@ package
 
 	public class Backdrop extends Entity
 	{
-		private var _otherList:Graphiclist;
-		private var _currentList:Graphiclist;
+		private var _otherList:Graphiclist = new Graphiclist();
+		private var _currentList:Graphiclist = new Graphiclist();
 		private var _both:Graphiclist;
 
 		private var hillNear:Image = new Image(A.gfxHILLNEAR);
@@ -26,7 +26,6 @@ package
 			var gY:int = FP.height - hillNear.height;
 			var scrollX:Number = 0.2;
 			var scrollY:Number = 0;
-
 
 			hillNear.x = hillNearDark.x = gX;
 			hillNear.y = hillNearDark.y = gY;
