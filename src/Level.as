@@ -14,13 +14,13 @@ package
 			x = 0;
 			y = FP.height - height;
 			type = A.typSOLID;
+
+			graphic = new Image(new BitmapData(width, height, false, 0x887766FF));
 		}
 		
 		override public function update():void
 		{
-			width = FP.camera.x + FP.width * 2;
-			graphic = new Image(new BitmapData(width, height, false, 0x887766FF));
-			//x = FP.camera.x;
+			x = FP.camera.x;
 		}
 	}
 }
