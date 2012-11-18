@@ -9,7 +9,7 @@ package
 
 	public class Player extends Mover 
 	{
-		private var spr:Image = new Image(new BitmapData(64, 96, false, 0));
+		private var spr:Image = new Image(A.gfxPLAYER);
 		
 		private var jump:Number = -12;
 		private var fric:Number = 2;

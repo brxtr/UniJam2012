@@ -23,6 +23,7 @@ package
 		private static var _player:Player;
 		private var _level:Level;
 		private var _enemies:Array;
+		private var _toRemove:Array;
 		
 
 		public function Game() 
@@ -30,6 +31,7 @@ package
 			_safe = true;
 
 			_enemies = [];
+			_toRemove = [];
 
 			//_soft.play();
 			SwitchMode();
@@ -44,17 +46,22 @@ package
 		override public function update():void
 		{
 			//Enemy stuff
+			FP.remove(_enemies, undefined)
 			for(var index:String in _enemies)
 			{
 				if(_enemies[index].x + _enemies[index].width < FP.camera.x)
 				{
-					remove(_enemies[index]); 
-					_enemies[index] = undefined;
+					_toRemove.push(_enemies[index]);
 				}
 			}
-			FP.remove(_enemies,undefined)
 			//end enemy stuff
-
+			
+			while (_toRemove.length != 0)
+			{
+				var ent:Entity = _toRemove.pop();
+				remove(ent);
+				ent = undefined;
+			}
 			super.update();
 			TrackCam();
 		}
@@ -79,13 +86,13 @@ package
 
 		private function SpawnEnemy():void
 		{
-			var enemy:Enemy = new Enemy(FP.camera.x + FP.width, FP.height/2);
+			var enemy:EnemyCymbal = new EnemyCymbal(FP.camera.x + FP.width, FP.height/2);
 			_enemies.push(enemy);
 			add(enemy);
 
 			//Spawn next enemy
 			var time:Number = Math.random()*2 + 1;
-			FP.alarm(time,SpawnEnemy);
+			FP.alarm(time, SpawnEnemy);
 		}
 
 		private function TrackCam():void

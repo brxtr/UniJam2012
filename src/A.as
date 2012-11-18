@@ -4,7 +4,7 @@ package
 	public class A 
 	{
 		// graphics
-		// [Embed(source = '../assets/graphics/graphic.png')] static public const gfxGRAPHIC:Class;
+		[Embed(source = '../assets/graphics/player.png')] static public const gfxPLAYER:Class;
 
 		// audio
 		[Embed(source = '../assets/audio/soft.mp3')] static public const sndSOFT:Class;
