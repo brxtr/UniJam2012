@@ -5,7 +5,7 @@ package
 	{
 		//====================graphics===============
 		//=====================PLAYER================
-		[Embed(source = '../assets/graphics/player.png')] static public const gfxPLAYER:Class;
+		[Embed(source = '../assets/graphics/youJump.png')] static public const gfxPLAYERJUMP:Class;
 		[Embed(source = '../assets/graphics/youIdle_strip2.png')] static public const gfxPLAYERIDLE:Class;
 		[Embed(source = '../assets/graphics/youStill_strip2.png')] static public const gfxPLAYERSTILL:Class;
 		[Embed(source = '../assets/graphics/youRun_strip4.png')] static public const gfxPLAYERRUN:Class;
