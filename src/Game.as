@@ -44,6 +44,7 @@ package
 
 			_spawnEnemies = false;
 
+			add(new Backdrop());
 			add(_player);
 			add(_level);
 		}

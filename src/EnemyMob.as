@@ -26,8 +26,10 @@ package
 			_vel.y += _acc.y;
 			
 			Move();
+
+			CheckDamage();
 		
-			if (collide(A.typPLAYER, x, y))
+			if (_life <= 0)
 			{
 				FP.world.remove(this);
 			}

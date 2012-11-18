@@ -17,6 +17,8 @@ package
 		[Embed(source = '../assets/graphics/HillNearDark.png')] static public const gfxHILLNEARDARK:Class;
 		[Embed(source = '../assets/graphics/HillFar.png')] static public const gfxHILLFAR:Class;
 		[Embed(source = '../assets/graphics/HillFarDark.png')] static public const gfxHILLFARDARK:Class;
+		[Embed(source = '../assets/graphics/LightBackground.png')] static public const gfxLIGHTBACKGROUND:Class;
+		[Embed(source = '../assets/graphics/DarkBackground.png')] static public const gfxDARKBACKGROUND:Class;
 
 		// audio
 		[Embed(source = '../assets/audio/Calm1.mp3')] static public const sndSOFT:Class;

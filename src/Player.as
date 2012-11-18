@@ -53,7 +53,8 @@ package
 			Input.define("jump", Key.UP, Key.W);
 			Input.define("left", Key.LEFT, Key.A);
 			Input.define("right", Key.RIGHT, Key.D);
-			Input.define("melee", Key.SHIFT);
+			Input.define("melee", Key.SHIFT, Key.X);
+			Input.define("melee", Key.CONTROL, Key.C);
 		}
 		
 		override public function update():void
