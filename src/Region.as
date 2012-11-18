@@ -13,7 +13,6 @@ package
 
 			super(x,y);
 			setHitbox(w,h);
-			graphic = new Image(new BitmapData(width,height,true,0x55FF7766));
 			this.type = type;
 		}
 	}

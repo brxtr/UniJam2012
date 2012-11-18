@@ -125,13 +125,8 @@ package
 				}
 			}
 
-			if(vel.y < 0)
-			{
-				vel.y += acc.y;
-			}
+			vel.y += acc.y;
 
-			vel.y += acc.y; //Double?
-			
 			Move();
 
 			if(!Input.check("left") && !Input.check("right"))

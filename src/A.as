@@ -24,6 +24,8 @@ package
 
 		//================Enemy graphics=========
 		[Embed(source = '../assets/graphics/enemySmall_strip4.png')] static public const gfxIMP:Class;
+		[Embed(source = '../assets/graphics/enemyTwo.png')] static public const gfxCYMBAL:Class;
+		[Embed(source = '../assets/graphics/demon.png')] static public const gfxBIG:Class;
 
 		// audio
 		[Embed(source = '../assets/audio/Calm1.mp3')] static public const sndSOFT1:Class;

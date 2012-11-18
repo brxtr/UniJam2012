@@ -6,15 +6,18 @@ package
 	
 	public class EnemyBig extends Enemy 
 	{
-		static private var a:Image = new Image(new BitmapData(156, 64, false, 0xFF0000));
+		static private var a:Image = new Image(A.gfxBIG);
+		private var _canAttack:Boolean;
 		
 		public function EnemyBig(x:int, y:int)
 		{
 			super(x, y);
 			
-			_points = 150;
+			_canAttack = true;
+			_points = 500;
 			graphic = a;
 			_life = 5;
+			type = A.typENEMYATTACK2;
 			
 			setHitbox(a.width, a.height);
 		}
@@ -38,6 +41,7 @@ package
 			{
 				Game.score += _points;
 				FP.world.remove(this);
+			}
 		} 
 	} 
 }

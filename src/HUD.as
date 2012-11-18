@@ -2,6 +2,7 @@ package
 {
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Text;
+	import net.flashpunk.FP;
 	
 	public class HUD extends Entity 
 	{
@@ -15,7 +16,7 @@ package
 		
 		override public function update():void
 		{
-			score = String(Game.score);
+			score.text = String(Game.score);
 			score.align = "right";
 		}
 		

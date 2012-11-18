@@ -11,7 +11,7 @@ package
 	
 	public class Game extends World 
 	{
-		public static const gravity:Number = 0.4;
+		public static const gravity:Number = 0.5;
 		public static const friction:Number = 2;
 
 		private static var _firstGame:Boolean = true;
@@ -119,7 +119,7 @@ package
 
 		private function SpawnEnemy():void
 		{
-			var enemy:Enemy = new EnemyMob(FP.camera.x + FP.width, FP.height/2);
+			var enemy:Enemy = new EnemyCymbal(FP.camera.x + FP.width, FP.height/2);
 			_enemies.push(enemy);
 			add(enemy);
 
