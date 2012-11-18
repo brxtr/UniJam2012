@@ -14,13 +14,16 @@ package
 		[Embed(source = '../assets/graphics/jumpAttack_strip11.png')] static public const gfxPLAYERJUMPATTACK:Class;
 		[Embed(source = '../assets/graphics/youAirattack_strip5.png')] static public const gfxPLAYERAIRATTACK:Class;
 		
-		//Other graphics
+		//================Background graphics=========
 		[Embed(source = '../assets/graphics/HillNear.png')] static public const gfxHILLNEAR:Class;
 		[Embed(source = '../assets/graphics/HillNearDark.png')] static public const gfxHILLNEARDARK:Class;
 		[Embed(source = '../assets/graphics/HillFar.png')] static public const gfxHILLFAR:Class;
 		[Embed(source = '../assets/graphics/HillFarDark.png')] static public const gfxHILLFARDARK:Class;
 		[Embed(source = '../assets/graphics/LightBackground.png')] static public const gfxLIGHTBACKGROUND:Class;
 		[Embed(source = '../assets/graphics/DarkBackground.png')] static public const gfxDARKBACKGROUND:Class;
+
+		//================Enemy graphics=========
+		[Embed(source = '../assets/graphics/enemySmall_strip4.png')] static public const gfxIMP:Class;
 
 		// audio
 		[Embed(source = '../assets/audio/Calm1.mp3')] static public const sndSOFT1:Class;
@@ -41,7 +44,7 @@ package
 		// static public const lyrDEPTH:int = depth;
 
 		// fonts
-		[Embed(source = '../assets/misc/HIGHLA2.ttf', fontName = 'fntHIGHLA2', embedAsCFF='false', fontFamily = 'default')] private const F1:Class;
+		//[Embed(source = '../assets/misc/HIGHLA2.ttf', fontName = 'fntHIGHLA2', embedAsCFF='false', fontFamily = 'default')] private const F1:Class;
 		
 		// levels
 		// [Embed(source = '../assets/levels/Level1.oel', mimeType = 'application/octet-stream')] static public const L1:Class;

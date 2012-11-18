@@ -9,18 +9,18 @@ package
 	{
 		public function Level()
 		{
-			height = 30;
-			width = FP.width;
+			height = 40;
+			width = FP.width*6;
 			x = 0;
 			y = FP.height - height;
 			type = A.typSOLID;
 
-			graphic = new Image(new BitmapData(width, height, false, 0x887766FF));
+			graphic = new Image(new BitmapData(width, height, false, 0xFF552200));
 		}
 		
 		override public function update():void
 		{
-			x = FP.camera.x;
+			x = FP.camera.x - FP.width*3;
 		}
 	}
 }

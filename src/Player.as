@@ -56,13 +56,13 @@ package
 			sprRun.add("run", [0, 1, 2, 3], 12);
 			sprIdle.add("idle", [0, 1], 3);
 			sprAttack1.add("attack1", [0, 1, 2, 3, 4, 5, 6, 7], 30, false);
-			sprStrum.add("strum", [0, 1], 12);
+			sprStrum.add("strum", [0, 1], 1.5);
 			sprJumpAttack.add("jumpattack", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 24, false);
 			sprAirAttack.add("airatttack", [0, 1, 2, 3, 4], 16, false);
 			
 			// initial graphic
-			graphic = sprIdle;
-			sprIdle.play("idle");
+			graphic = sprStrum;
+			sprStrum.play("strum");
 			
 			originX = 10;
 			setHitbox(68, 96);
@@ -109,6 +109,14 @@ package
 				{
 					Jump();
 					graphic = sprJump;
+					if(_xDir < 0)
+					{
+						sprJump.flipped = true;
+					}
+					else
+					{
+						sprJump.flipped = false;
+					}
 				}
 			}
 
@@ -125,7 +133,10 @@ package
 			{
 				if (Math.abs(_vel.x) > 0)
 				{
-					graphic = (Game.safe) ? sprStrum : sprIdle;
+					if(!_attacking)
+					{ 
+						graphic = (Game.safe) ? sprStrum : sprIdle;
+					}
 					sprIdle.play("idle");
 					sprStrum.play("strum");
 					sprIdle.flipped = sprStrum.flipped = ( _xDir < 0);
@@ -156,21 +167,32 @@ package
 				switch(_attackType)
 				{
 				case 1:
-					/*if(_xDir > 0)
+					if(_xDir > 0)
 					{
-						_damageRegion.x = x + width;
+						_damageRegion.x = x + width + 30;
 						sprAttack1.flipped = false;
 					}
 					else
 					{
-						_damageRegion.x = x + _damageRegion.width;
+						_damageRegion.x = x + _damageRegion.width + 30;
 						sprAttack1.flipped = true;
-					}*/
+					}
 					_vel.x = 0; _vel.y = 0;
 					break;
-				case 2:
-					break;
 				case 3:
+					if(_xDir > 0)
+					{
+						_damageRegion.x = x + width + 10;
+						_damageRegion.y = y;
+						sprJumpAttack.flipped = false;
+					}
+					else
+					{
+						_damageRegion.x = x + _damageRegion.width + 30;
+						sprJumpAttack.flipped = true;
+					}
+					break;
+				case 2:
 					break;
 				default:
 					break;
@@ -203,40 +225,53 @@ package
 				if(_jumping)
 				{ 
 					graphic = sprJumpAttack;
-					sprJumpAttack.play("jumpattack");
+					sprJumpAttack.play("jumpattack",true,0);
 					_attackType = 3; 
 					attackSeconds = 1;
 					regionY = y;
 					regionH = height;
-					regionW = 10; //Change this to make range longer/shorter
+					regionW = 40; //Change this to make range longer/shorter
 					regionType = A.typPLAYERATTACK1;
 					//set region dimensions
 					//set attack time
 					//Start jump attack anim
+
+					//Acount for player's direction
+					//Man this is rough
+					if(_xDir > 0)
+					{
+						regionX = x + width + 30;
+						sprAttack1.flipped = false;
+					}
+					else
+					{
+						regionX = x + regionW + 30;
+						sprAttack1.flipped = true;
+					}
 				} 
 				else
 				{
 					//Could make this a three-hit-combo thing
 					_attackType = 1;
-					attackSeconds = 0.5;
+					attackSeconds = 0.43;
 					regionY = y;
 					regionH = height;
-					regionW = 10; //Change this to make range longer/shorter
+					regionW = 30; //Change this to make range longer/shorter
 					regionType = A.typPLAYERATTACK1;
 					//start attack anim
-				}
 
-				//Acount for player's direction
-				//Man this is rough
-				if(_xDir > 0)
-				{
-					regionX = x + width;
-					sprAttack1.flipped = false;
-				}
-				else
-				{
-					regionX = x + regionW;
-					sprAttack1.flipped = true;
+					//Acount for player's direction
+					//Man this is rough
+					if(_xDir > 0)
+					{
+						regionX = x + width + 30
+						sprAttack1.flipped = false;
+					}
+					else
+					{
+						regionX = x + regionW + 30;
+						sprAttack1.flipped = true;
+					}
 				}
 
 				_damageRegion = new Region(regionX,regionY,regionW,regionH,regionType);
@@ -258,11 +293,15 @@ package
 		private function StopAttacking():void
 		{
 			_attacking = false;
+			_attackType = 0;
 			FP.world.remove(_damageRegion);
-			graphic = (Game.safe) ? sprStrum : sprIdle;
-			sprIdle.play("idle");
-			sprStrum.play("strum");
-			sprIdle.flipped = sprStrum.flipped = (_xDir < 0);
+			if(Math.abs(_vel.x) < 0.5)
+			{
+				graphic = (Game.safe) ? sprStrum : sprIdle;
+				sprIdle.play("idle");
+				sprStrum.play("strum");
+				sprIdle.flipped = sprStrum.flipped = (_xDir < 0);
+			}
 		}
 
 		/*Damage code stop here*/
@@ -276,13 +315,14 @@ package
 		private function CheckDamage():Boolean
 		{
 			var damaged:Boolean
-			var ent:Entity = collide(A.typENEMYATTACK1,0,0);
+			var ent:Entity = collide(A.typENEMYATTACK1,x,y);
 			if(ent && !HasHit(ent))
 			{
+				FP.console.log("Yo");
 				--_life;
 				_hasHit.push(ent); //Prevent one damage event from counting twice
 			}
-			ent = collide(A.typENEMYATTACK2,0,0);
+			ent = collide(A.typENEMYATTACK2,x,y);
 			if(ent && !HasHit(ent))
 			{
 				_life -= 2;
