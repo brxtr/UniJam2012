@@ -46,9 +46,9 @@ package
 		// fonts
 		//[Embed(source = '../assets/misc/HIGHLA2.ttf', fontName = 'fntHIGHLA2', embedAsCFF='false', fontFamily = 'default')] private const F1:Class;
 		
+		//[Embed(source = '../assets/misc/SHAXIZOR.ttf', fontName = 'yourMum', embedAsCFF = "false", fontFamily = 'fntHIGHLA2')] F1:Class;
 		// levels
 		// [Embed(source = '../assets/levels/Level1.oel', mimeType = 'application/octet-stream')] static public const L1:Class;
 		// static public const LEVELS:Array = [L1];
 	}
-
 }

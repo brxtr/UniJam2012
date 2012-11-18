@@ -9,9 +9,9 @@ package
 	
 	public class Preloader extends Sprite
 	{
-		private static const mustClick:Boolean = true;
+		private static const mustClick:Boolean = false;
 		private static const mainClassName:String = "Main";
-		private static const BG_COLOR:uint = 0x000000, FG_COLOR:uint = 0xFFFFFF;
+		private static const BG_COLOR:uint = 0x3A3323, FG_COLOR:uint = 0xD97D3C;
 		[Embed(source = 'net/flashpunk/graphics/04B_03__.TTF', embedAsCFF="false", fontFamily = 'default')] private static const FONT:Class;
 		
 		private var pb:Shape, t:TextField, px:int, py:int, w:int, h:int = 20, sw:int, sh:int;
