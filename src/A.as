@@ -11,7 +11,9 @@ package
 		[Embed(source = '../assets/graphics/youRun_strip4.png')] static public const gfxPLAYERRUN:Class;
 		[Embed(source = '../assets/graphics/youAttack_strip8.png')] static public const gfxPLAYERATTACK1:Class;
 		[Embed(source = '../assets/graphics/youStrum_strip2.png')] static public const gfxPLAYERSTRUM:Class;
-
+		[Embed(source = '../assets/graphics/jumpAttack_strip11.png')] static public const gfxPLAYERJUMPATTACK:Class;
+		[Embed(source = '../assets/graphics/youAirattack_strip5.png')] static public const gfxPLAYERAIRATTACK:Class;
+		
 		//Other graphics
 		[Embed(source = '../assets/graphics/HillNear.png')] static public const gfxHILLNEAR:Class;
 		[Embed(source = '../assets/graphics/HillNearDark.png')] static public const gfxHILLNEARDARK:Class;
@@ -39,7 +41,7 @@ package
 		// static public const lyrDEPTH:int = depth;
 
 		// fonts
-		// [Embed(source = '../assets/misc/font.ttf', fontName = 'fntFONT', embedAsCFF='false', fontFamily = 'default')] private const F1:Class;
+		[Embed(source = '../assets/misc/HIGHLA2.ttf', fontName = 'fntHIGHLA2', embedAsCFF='false', fontFamily = 'default')] private const F1:Class;
 		
 		// levels
 		// [Embed(source = '../assets/levels/Level1.oel', mimeType = 'application/octet-stream')] static public const L1:Class;

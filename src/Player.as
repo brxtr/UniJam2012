@@ -19,6 +19,8 @@ package
 		private var sprIdle:Spritemap = new Spritemap(A.gfxPLAYERIDLE, 78, 96);
 		private var sprAttack1:Spritemap = new Spritemap(A.gfxPLAYERATTACK1, 156, 103);
 		private var sprStrum:Spritemap = new Spritemap(A.gfxPLAYERSTRUM, 85, 96);
+		private var sprJumpAttack:Spritemap = new Spritemap(A.gfxPLAYERJUMPATTACK, 91, 129);
+		private var sprAirAttack:Spritemap = new Spritemap(A.gfxPLAYERAIRATTACK ,138, 159);
 		
 		private var _damageRegion:Region;
 		private var _attacking:Boolean;
@@ -53,8 +55,10 @@ package
 			
 			sprRun.add("run", [0, 1, 2, 3], 12);
 			sprIdle.add("idle", [0, 1], 3);
-			sprAttack1.add("attack1", [0, 1, 2, 3, 4, 5, 6, 7], 30,false);
+			sprAttack1.add("attack1", [0, 1, 2, 3, 4, 5, 6, 7], 30, false);
 			sprStrum.add("strum", [0, 1], 12);
+			sprJumpAttack.add("jumpattack", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 24, false);
+			sprAirAttack.add("airatttack", [0, 1, 2, 3, 4], 16, false);
 			
 			// initial graphic
 			graphic = sprIdle;
@@ -198,8 +202,10 @@ package
 
 				if(_jumping)
 				{ 
+					graphic = sprJumpAttack;
+					sprJumpAttack.play("jumpattack");
 					_attackType = 3; 
-					attackSeconds = 0.3;
+					attackSeconds = 1;
 					regionY = y;
 					regionH = height;
 					regionW = 10; //Change this to make range longer/shorter
@@ -243,6 +249,10 @@ package
 
 		private function RangedAttack():void
 		{
+			// if (_jumping)
+			//{
+				//set player anim to air attack
+			//}
 		}
 
 		private function StopAttacking():void
