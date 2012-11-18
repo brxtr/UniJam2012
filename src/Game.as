@@ -51,6 +51,7 @@ package
 			add(_backdrop);
 			add(_player);
 			add(_level);
+			add(new HUD);
 		}
 		
 		override public function update():void
