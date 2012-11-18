@@ -2,10 +2,10 @@
                                                               |
 OVERVIEW:                                                     |
 - Enemies (visuals, attack, defend via specific nuances)      |
-- Safe/danger (enemy behaviour, player speed, music, visuals) |
+-- Safe/danger (enemy behaviour, player speed, music, visuals) |
 - Attack combinations (visuals, damage to specific enemies)   |
 - Scoring/death                                               |
-- Title screen                                                |
+-- Title screen                                                |
 - Sound effects (take damage, jump, attack (swing, strum))    |
                                                               |
 --------------------------------------------------------------+
