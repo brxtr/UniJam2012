@@ -7,11 +7,17 @@ package
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;
+	import net.flashpunk.graphics.Spritemap;
 
 	public class Player extends Mover 
 	{
 		private var _life:int;
+		
 		private var spr:Image = new Image(A.gfxPLAYER);
+		private var sprRun:Spritemap = new Spritemap(A.gfxPLAYERRUN, 74, 107);
+		private var sprIdle:Spritemap = new Spritemap(A.gfxPLAYERIDLE, 78, 96);
+		private var sprAttack1:Spritemap = new Spritemap(A.gfxPLAYERATTACK1, 156, 103);
+		private var sprStrum:Spritemap = new Spritemap(A.gfxPLAYERSTRUM, 85, 96);
 		
 		private var _damageRegion:Region;
 		private var _attacking:Boolean;
@@ -43,11 +49,15 @@ package
 			_attacking = false;
 			_attackType = 0;
 			
-			// TODO: change to spritemap and add animations
+			sprRun.add("run", [0, 1, 2, 3], 12);
+			sprIdle.add("idle", [0, 1], 12);
+			sprAttack1.add("attack1", [0, 1, 2, 3, 4, 5, 6, 7], 12);
+			sprStrum.add("strum", [0, 1], 12);
 			
-			graphic = spr;
+			graphic = sprIdle;
+			sprIdle.play("idle");
 			
-			setHitbox(spr.width, spr.height);
+			setHitbox(78, 96);
 			type = A.typPLAYER;
 			
 			Input.define("jump", Key.UP, Key.W);
@@ -60,11 +70,17 @@ package
 		{
 			if (Input.check("left"))
 			{
+				graphic = sprRun;
+				sprRun.play("run");
+				sprRun.flipped = true;
 				_vel.x -= _acc.x;
 				_xDir = -1;
 			}
 			if (Input.check("right"))
 			{
+				graphic = sprRun;
+				sprRun.play("run");
+				sprRun.flipped = false;
 				_vel.x += _acc.x;
 				_xDir = 1;
 			}
@@ -94,6 +110,10 @@ package
 			{
 				if (Math.abs(_vel.x) > 0)
 				{
+					graphic = (Game.safe) ? sprStrum : sprIdle;
+					sprIdle.play("idle");
+					sprStrum.play("strum");
+					sprIdle.flipped = sprStrum.flipped = (_vel.x <= 0);
 					_vel.x -= FP.sign(_vel.x)*Game.friction;
 				}
 				else
@@ -145,6 +165,8 @@ package
 		{
 			if(!_attacking)
 			{
+				graphic = sprAttack1;
+				sprAttack1.play("attack1");
 				var regionX:int = 0;
 				var regionY:int = 0;
 				var regionW:int = 0;
@@ -181,10 +203,12 @@ package
 				if(_xDir > 0)
 				{
 					regionX = x + width;
+					sprAttack1.flipped = false;
 				}
 				else
 				{
 					regionX = x;
+					sprAttack1.flipped = true;
 				}
 
 				_damageRegion = new Region(regionX,regionY,regionW,regionH,regionType);
@@ -203,6 +227,10 @@ package
 		{
 			_attacking = false;
 			FP.world.remove(_damageRegion);
+			graphic = (Game.safe) ? sprStrum : sprIdle;
+			sprIdle.play("idle");
+			sprStrum.play("strum");
+			sprIdle.flipped = sprStrum.flipped = (_vel.x <= 0);
 		}
 
 		/*Damage code stop here*/
@@ -211,6 +239,7 @@ package
 		{
 			_vel.y = jump;
 			_jumping = true;
+			
 		}
 		
 		private function CheckDamage():Boolean

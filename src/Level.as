@@ -1,6 +1,6 @@
 package
 {
-	import flash.display.BitmapData
+	import flash.display.BitmapData;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Image;
@@ -13,14 +13,14 @@ package
 			width = FP.width;
 			x = 0;
 			y = FP.height - height;
-			type = A.typSOLID; //Change this to typSOLID;
-
-			graphic = new Image(new BitmapData(width,height,false,0x887766FF));
+			type = A.typSOLID;
 		}
 		
 		override public function update():void
 		{
-			x = FP.camera.x;
+			width = FP.camera.x + FP.width * 2;
+			graphic = new Image(new BitmapData(width, height, false, 0x887766FF));
+			//x = FP.camera.x;
 		}
 	}
 }
