@@ -19,14 +19,18 @@ package
 
 		private static var _player:Player;
 
-		private const _soft:Sfx = new Sfx(A.sndSOFT, SwitchMode);
-		private const _hard:Sfx = new Sfx(A.sndHARD, SwitchMode);
+		private const _soft1:Sfx = new Sfx(A.sndSOFT1, SwitchMode);
+		private const _soft2:Sfx = new Sfx(A.sndSOFT2, SwitchMode);
+		private const _hard1:Sfx = new Sfx(A.sndHARD1, SwitchMode);
+		private const _hard2:Sfx = new Sfx(A.sndHARD2, Win);
+
+		private const musArray:Array = [_soft1, _hard1,_soft2,_hard2];
 
 		private var floor:Entity;
 		private var _level:Level;
+		private var _backdrop:Backdrop;
 		private var _enemies:Array;
 		private var _toRemove:Array;
-		private var _spawnEnemies:Boolean;
 		
 
 		public function Game() 
@@ -36,15 +40,14 @@ package
 			_enemies = [];
 			_toRemove = [];
 
-			//_soft.play();
-			SwitchMode();
+			_soft1.play();
+			//SwitchMode();
 			
 			_player = new Player(FP.width / 2,FP.height / 2);
 			_level = new Level();
 
-			_spawnEnemies = false;
-
-			add(new Backdrop());
+			_backdrop = new Backdrop();
+			add(_backdrop);
 			add(_player);
 			add(_level);
 		}
@@ -69,17 +72,17 @@ package
 			}
 			//end enemy stuff
 			
-			FP.console.log(_spawnEnemies);
 			super.update();
 			TrackCam();
 		}
 
 		private function SwitchMode():void
 		{
+			_backdrop.SwitchGraphics();
 			if(_safe)
 			{
 				_safe = false;
-				_hard.play();
+				_hard1.play();
 				//Spawn enemies and stuff
 
 				SpawnEnemy();
@@ -87,13 +90,13 @@ package
 			else
 			{
 				_safe = true;
-				_soft.play();
+				_soft1.play();
 			} 
 		}
 
 		private function SpawnEnemy():void
 		{
-			var enemy:Enemy = new EnemyBig(FP.camera.x + FP.width, FP.height/2);
+			var enemy:Enemy = new EnemyMob(FP.camera.x + FP.width, FP.height/2);
 			_enemies.push(enemy);
 			add(enemy);
 
@@ -103,6 +106,10 @@ package
 				var time:Number = Math.random()*2 + 1;
 				FP.alarm(time, SpawnEnemy);
 			}
+		}
+
+		private function Win():void
+		{
 		}
 
 		private function TrackCam():void
