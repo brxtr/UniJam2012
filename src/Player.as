@@ -91,6 +91,7 @@ package
 					_vel.x += _acc.x;
 					_xDir = 1;
 				}
+			}
 			
 			if(collide(A.typSOLID, x, y + 1))
 			{
