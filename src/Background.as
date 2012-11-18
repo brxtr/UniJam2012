@@ -25,7 +25,7 @@ package
 		{
 			var gX:int = 0;
 			var gY:int = FP.height - hillNear.height;
-			var scrollX:Number = 0.2;
+			var scrollX:Number = 0.3;
 			var scrollY:Number = 0;
 
 			hillNear.x = hillNearDark.x = gX;
@@ -35,7 +35,7 @@ package
 
 			gX = 0;
 			gY = FP.height - hillFar.height;
-			scrollX = 0.08;
+			scrollX = 0.15;
 
 			hillFar.x = hillFarDark.x = gX;
 			hillFar.y = hillFarDark.y = gY;

@@ -15,7 +15,7 @@ package
 		{
 			FP.world = new Title;
 			FP.screen.color = 0x3A3323;
-			FP.console.enable();
+			//FP.console.enable();
 		}
 		
 	}
