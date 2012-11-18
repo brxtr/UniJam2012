@@ -3,8 +3,20 @@ package
 
 	public class A 
 	{
-		// graphics
+		//====================graphics===============
+		//=====================PLAYER================
 		[Embed(source = '../assets/graphics/player.png')] static public const gfxPLAYER:Class;
+		[Embed(source = '../assets/graphics/youIdle_strip2.png')] static public const gfxPLAYERIDLE:Class;
+		[Embed(source = '../assets/graphics/youStill_strip2.png')] static public const gfxPLAYERSTILL:Class;
+		[Embed(source = '../assets/graphics/youRun_strip4.png')] static public const gfxPLAYERRUN:Class;
+		[Embed(source = '../assets/graphics/youAttack_strip8.png')] static public const gfxPLAYERATTACK1:Class;
+		[Embed(source = '../assets/graphics/youStrum_strip2.png')] static public const gfxPLAYERSTRUM:Class;
+
+		//Other graphics
+		[Embed(source = '../assets/graphics/HillNear.png')] static public const gfxHILLNEAR:Class;
+		[Embed(source = '../assets/graphics/HillNearDark.png')] static public const gfxHILLNEARDARK:Class;
+		[Embed(source = '../assets/graphics/HillFar.png')] static public const gfxHILLFAR:Class;
+		[Embed(source = '../assets/graphics/HillFarDark.png')] static public const gfxHILLFARDARK:Class;
 
 		// audio
 		[Embed(source = '../assets/audio/Calm1.mp3')] static public const sndSOFT:Class;

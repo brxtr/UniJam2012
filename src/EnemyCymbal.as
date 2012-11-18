@@ -12,6 +12,7 @@ package
 		{
 			super(x, y);
 			
+			_life = 2;
 			graphic = a;
 			
 			setHitbox(a.width, a.height);
@@ -19,21 +20,26 @@ package
 		
 		override public function update():void
 		{
-			//super.update();
-			
+			if(_life <= 0)
+			{
+				FP.world.remove(this);
+			}
+
 			_vel.x = GetDirectionToPlayer() * 4;
 			
 			_vel.y += _acc.y;
 			
 			Move();
-		
-			if (collide(A.typPLAYER, x, y) && Game.player.y + Game.player.height - 10 < y)
-			{
-				FP.world.remove(this);
-				FP.console.log("It happened");
-			}
 		}
-		
-	}
 
+		override protected function CheckDamage():Boolean
+		{ 
+			if(Game.player.y + Game.player.height - 10 < y)
+			{
+				return super.CheckDamage();
+			}
+
+			return false;
+		}		
+	} 
 }

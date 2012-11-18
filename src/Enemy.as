@@ -15,11 +15,6 @@ package
 		{
 			super(x,y);
 
-			/*width = 20;
-			height = 20;
-			graphic = new Image(new BitmapData(width,height,false,0xFF7766FF));
-			_vel.x = -1.0;*/
-
 			type = A.typENEMY;
 			_hasHit = [];
 			_life = 0;
@@ -37,16 +32,17 @@ package
 
 		protected function CheckDamage():Boolean
 		{
-			var ent:Entity = collide(A.typPLAYERATTACK1, 0, 0);
+			var ent:Entity = collide(A.typPLAYERATTACK1, x, y);
 			var damaged:Boolean = false;
 			
 			if(ent && !HasAlreadyHit(ent))
 			{
+			FP.console.log("Lol");
 				damaged = true;
 				--_life;
 				_hasHit.push(ent); //Prevent one damage event from counting twice
 			}
-			ent = collide(A.typPLAYERATTACK2,0,0);
+			ent = collide(A.typPLAYERATTACK2,x,y);
 			if(ent && !HasAlreadyHit(ent))
 			{
 				damaged = true;
@@ -67,13 +63,16 @@ package
 				}
 			}
 			return false;
+		} 
+
+		protected function GetDistanceToPlayer():int
+		{
+			return Game.player.x - x;
 		}
-
-
-
+			
 		protected function GetDirectionToPlayer():int
 		{
-			return FP.sign(Game.player.x - x);
+			return FP.sign(GetDistanceToPlayer());
 		}
 			
 	}

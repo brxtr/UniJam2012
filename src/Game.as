@@ -17,14 +17,16 @@ package
 		private static var _safe:Boolean;
 		public static function get safe():Boolean { return _safe; }
 
+		private static var _player:Player;
+
 		private const _soft:Sfx = new Sfx(A.sndSOFT, SwitchMode);
 		private const _hard:Sfx = new Sfx(A.sndHARD, SwitchMode);
 
 		private var floor:Entity;
-		private static var _player:Player;
 		private var _level:Level;
 		private var _enemies:Array;
 		private var _toRemove:Array;
+		private var _spawnEnemies:Boolean;
 		
 
 		public function Game() 
@@ -34,11 +36,13 @@ package
 			_enemies = [];
 			_toRemove = [];
 
-			_soft.play();
-			//SwitchMode();
+			//_soft.play();
+			SwitchMode();
 			
 			_player = new Player(FP.width / 2,FP.height / 2);
 			_level = new Level();
+
+			_spawnEnemies = false;
 
 			add(_player);
 			add(_level);
@@ -64,6 +68,7 @@ package
 			}
 			//end enemy stuff
 			
+			FP.console.log(_spawnEnemies);
 			super.update();
 			TrackCam();
 		}
@@ -82,19 +87,17 @@ package
 			{
 				_safe = true;
 				_soft.play();
-
-				StopSpawningEnemies();
-			}
+			} 
 		}
 
 		private function SpawnEnemy():void
 		{
-			var enemy:EnemyCymbal = new EnemyCymbal(FP.camera.x + FP.width, FP.height/2);
+			var enemy:Enemy = new EnemyBig(FP.camera.x + FP.width, FP.height/2);
 			_enemies.push(enemy);
 			add(enemy);
 
 			//Spawn next enemy
-			if(_spawnEnemies)
+			if(!_safe)
 			{
 				var time:Number = Math.random()*2 + 1;
 				FP.alarm(time, SpawnEnemy);

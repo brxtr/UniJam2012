@@ -61,10 +61,12 @@ package
 			if (Input.check("left"))
 			{
 				_vel.x -= _acc.x;
+				_xDir = -1;
 			}
 			if (Input.check("right"))
 			{
 				_vel.x += _acc.x;
+				_xDir = 1;
 			}
 			
 			if(collide(A.typSOLID, x, y + 1))
@@ -110,6 +112,8 @@ package
 			}
 		}
 
+		/*Attacking code start */
+
 		private function HandleAttacks():void
 		{
 			if(_attacking)
@@ -141,16 +145,21 @@ package
 		{
 			if(!_attacking)
 			{
-				var regionX:int;
-				var regionY:int;
-				var regionW:int;
-				var regionH:int;
-				var regionType:String;
-				var attackSeconds:Number;
+				var regionX:int = 0;
+				var regionY:int = 0;
+				var regionW:int = 0;
+				var regionH:int = 0;
+				var regionType:String = "";
+				var attackSeconds:Number = 0;
 
 				if(_jumping)
 				{ 
 					_attackType = 3; 
+					attackSeconds = 0.3;
+					regionY = y;
+					regionH = height;
+					regionW = 10; //Change this to make range longer/shorter
+					regionType = A.typPLAYERATTACK1;
 					//set region dimensions
 					//set attack time
 					//Start jump attack anim
@@ -175,7 +184,7 @@ package
 				}
 				else
 				{
-					regionX = x - regionW;
+					regionX = x;
 				}
 
 				_damageRegion = new Region(regionX,regionY,regionW,regionH,regionType);
@@ -195,6 +204,8 @@ package
 			_attacking = false;
 			FP.world.remove(_damageRegion);
 		}
+
+		/*Damage code stop here*/
 
 		private function Jump():void
 		{

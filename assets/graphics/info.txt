@@ -1,0 +1,5 @@
+youStill: For main menu, or something where you have no combat. 2 frames, 58 x
+96. 30 frames per animation frame (2 fps)
+youStrum: 30 frames per animation frame 85x96
+youIdle: For standing still during combat. 2 frames, 78 x 96
+youAttack: 4 frames per animation frame.
