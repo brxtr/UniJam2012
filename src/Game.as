@@ -34,8 +34,8 @@ package
 			_enemies = [];
 			_toRemove = [];
 
-			//_soft.play();
-			SwitchMode();
+			_soft.play();
+			//SwitchMode();
 			
 			_player = new Player(FP.width / 2,FP.height / 2);
 			_level = new Level();
@@ -82,6 +82,8 @@ package
 			{
 				_safe = true;
 				_soft.play();
+
+				StopSpawningEnemies();
 			}
 		}
 
@@ -92,8 +94,11 @@ package
 			add(enemy);
 
 			//Spawn next enemy
-			var time:Number = Math.random()*2 + 1;
-			FP.alarm(time, SpawnEnemy);
+			if(_spawnEnemies)
+			{
+				var time:Number = Math.random()*2 + 1;
+				FP.alarm(time, SpawnEnemy);
+			}
 		}
 
 		private function TrackCam():void

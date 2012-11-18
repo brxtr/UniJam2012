@@ -8,9 +8,12 @@ package
 	{
 		public function Region(x:int,y:int,w:int,h:int,type:String)
 		{
+			if(w <= 0) w = 1;
+			if(h <= 0) h = 1;
+
 			super(x,y);
 			setHitbox(w,h);
-			graphic = new Image(new BitmapData(width,height,false,0xFF7766FF));
+			graphic = new Image(new BitmapData(width,height,true,0x55FF7766));
 			this.type = type;
 		}
 	}

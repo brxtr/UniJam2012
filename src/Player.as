@@ -180,6 +180,7 @@ package
 
 				_damageRegion = new Region(regionX,regionY,regionW,regionH,regionType);
 
+				_attacking = true;
 				FP.world.add(_damageRegion);
 				FP.alarm(attackSeconds,StopAttacking);
 			}
