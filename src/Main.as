@@ -8,7 +8,7 @@ package
 		
 		public function Main()
 		{
-			super(640, 480);
+			super(800, 600);
 		}
 		
 		override public function init():void 

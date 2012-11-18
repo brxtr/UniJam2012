@@ -47,17 +47,19 @@ package
 
 			_hasHit = [];
 			_attacking = false;
+			_jumping = false;
 			_attackType = 0;
 			
 			sprRun.add("run", [0, 1, 2, 3], 12);
-			sprIdle.add("idle", [0, 1], 12);
-			sprAttack1.add("attack1", [0, 1, 2, 3, 4, 5, 6, 7], 12);
+			sprIdle.add("idle", [0, 1], 3);
+			sprAttack1.add("attack1", [0, 1, 2, 3, 4, 5, 6, 7], 30,false);
 			sprStrum.add("strum", [0, 1], 12);
 			
 			graphic = sprIdle;
 			sprIdle.play("idle");
 			
-			setHitbox(78, 96);
+			originX = 10;
+			setHitbox(68, 96);
 			type = A.typPLAYER;
 			
 			Input.define("jump", Key.UP, Key.W);
@@ -69,21 +71,24 @@ package
 		
 		override public function update():void
 		{
-			if (Input.check("left"))
+			if(!_attacking)
 			{
-				graphic = sprRun;
-				sprRun.play("run");
-				sprRun.flipped = true;
-				_vel.x -= _acc.x;
-				_xDir = -1;
-			}
-			if (Input.check("right"))
-			{
-				graphic = sprRun;
-				sprRun.play("run");
-				sprRun.flipped = false;
-				_vel.x += _acc.x;
-				_xDir = 1;
+				if (Input.check("left"))
+				{
+					graphic = sprRun;
+					sprRun.play("run");
+					sprRun.flipped = true;
+					_vel.x -= _acc.x;
+					_xDir = -1;
+				}
+				if (Input.check("right"))
+				{
+					graphic = sprRun;
+					sprRun.play("run");
+					sprRun.flipped = false;
+					_vel.x += _acc.x;
+					_xDir = 1;
+				}
 			}
 			
 			if(collide(A.typSOLID, x, y + 1))
@@ -92,7 +97,7 @@ package
 				{
 					_jumping = false;
 				}
-				if (Input.check("jump"))
+				if (Input.pressed("jump"))
 				{
 					Jump();
 				}
@@ -114,7 +119,7 @@ package
 					graphic = (Game.safe) ? sprStrum : sprIdle;
 					sprIdle.play("idle");
 					sprStrum.play("strum");
-					sprIdle.flipped = sprStrum.flipped = (_vel.x <= 0);
+					sprIdle.flipped = sprStrum.flipped = ( _xDir < 0);
 					_vel.x -= FP.sign(_vel.x)*Game.friction;
 				}
 				else
@@ -142,6 +147,17 @@ package
 				switch(_attackType)
 				{
 				case 1:
+					/*if(_xDir > 0)
+					{
+						_damageRegion.x = x + width;
+						sprAttack1.flipped = false;
+					}
+					else
+					{
+						_damageRegion.x = x + _damageRegion.width;
+						sprAttack1.flipped = true;
+					}*/
+					_vel.x = 0; _vel.y = 0;
 					break;
 				case 2:
 					break;
@@ -152,11 +168,11 @@ package
 				}
 			}
 
-			if(Input.check("melee"))
+			if(Input.pressed("melee"))
 			{
 				MeleeAttack();
 			}
-			else if(Input.check("ranged"))
+			else if(Input.pressed("ranged"))
 			{
 				RangedAttack();
 			}
@@ -167,7 +183,7 @@ package
 			if(!_attacking)
 			{
 				graphic = sprAttack1;
-				sprAttack1.play("attack1");
+				sprAttack1.play("attack1",true,0);
 				var regionX:int = 0;
 				var regionY:int = 0;
 				var regionW:int = 0;
@@ -191,7 +207,7 @@ package
 				{
 					//Could make this a three-hit-combo thing
 					_attackType = 1;
-					attackSeconds = 0.3;
+					attackSeconds = 0.5;
 					regionY = y;
 					regionH = height;
 					regionW = 10; //Change this to make range longer/shorter
@@ -208,7 +224,7 @@ package
 				}
 				else
 				{
-					regionX = x;
+					regionX = x + regionW;
 					sprAttack1.flipped = true;
 				}
 
@@ -231,7 +247,7 @@ package
 			graphic = (Game.safe) ? sprStrum : sprIdle;
 			sprIdle.play("idle");
 			sprStrum.play("strum");
-			sprIdle.flipped = sprStrum.flipped = (_vel.x <= 0);
+			sprIdle.flipped = sprStrum.flipped = (_xDir < 0);
 		}
 
 		/*Damage code stop here*/
@@ -240,7 +256,6 @@ package
 		{
 			_vel.y = jump;
 			_jumping = true;
-			
 		}
 		
 		private function CheckDamage():Boolean
