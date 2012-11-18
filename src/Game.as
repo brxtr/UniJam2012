@@ -87,21 +87,13 @@ package
 
 		private function SpawnEnemy():void
 		{
-<<<<<<< HEAD
 			var enemy:EnemyCymbal = new EnemyCymbal(FP.camera.x + FP.width, FP.height/2);
-=======
-		/*	var enemy:Enemy = new Enemy(FP.camera.x + FP.width, FP.height/2);
->>>>>>> 2f9dd6fb8936df5414d7d03dd38f588745d535a5
 			_enemies.push(enemy);
 			add(enemy);
 
 			//Spawn next enemy
 			var time:Number = Math.random()*2 + 1;
-<<<<<<< HEAD
 			FP.alarm(time, SpawnEnemy);
-=======
-			FP.alarm(time,SpawnEnemy);*/
->>>>>>> 2f9dd6fb8936df5414d7d03dd38f588745d535a5
 		}
 
 		private function TrackCam():void
