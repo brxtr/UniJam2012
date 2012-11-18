@@ -94,7 +94,7 @@ package
 				{
 					_jumping = false;
 					graphic = sprIdle;
-					sprPlay("idle");
+					sprIdle.play("idle");
 				}
 				if (Input.check("jump"))
 				{
