@@ -11,7 +11,7 @@ package
 	
 	public class Game extends World 
 	{
-		public static const gravity:Number = 0.4;
+		public static const gravity:Number = 0.5;
 		public static const friction:Number = 2;
 
 		private static var _firstGame:Boolean = true;
@@ -56,8 +56,8 @@ package
 			_backdrop = new Background();
 			add(_backdrop);
 			add(_level);
-<<<<<<< HEAD
 			add(_player);
+			add(new HUD);
 
 			if(_firstGame)
 			{
@@ -66,9 +66,6 @@ package
 				_tutText.x = (FP.width - _tutText.width) / 2;
 				_tutText.y = (FP.height - _tutText.height) / 2;
 			}
-=======
-			add(new HUD);
->>>>>>> 2c255e4c2c517dd6a28bfdbeb19ff40436d33f41
 		}
 		
 		override public function update():void
@@ -122,15 +119,27 @@ package
 
 		private function SpawnEnemy():void
 		{
-			var enemy:Enemy = new EnemyMob(FP.camera.x + FP.width, FP.height/2);
+<<<<<<< HEAD
+			var enemy:Enemy = new EnemyCymbal(FP.camera.x + FP.width, FP.height/2);
 			_enemies.push(enemy);
 			add(enemy);
 
 			//Spawn next enemy
 			if(!_safe)
+=======
+			if (Player.player.life > 0)
+>>>>>>> c9e4c82e431d73d73ad67696f322fd066d8ce4f8
 			{
-				var time:Number = Math.random()*2 + 1;
-				FP.alarm(time, SpawnEnemy);
+				var enemy:Enemy = new EnemyMob(FP.camera.x + FP.width, FP.height/2);
+				_enemies.push(enemy);
+				add(enemy);
+
+				//Spawn next enemy
+				if(!_safe)
+				{
+					var time:Number = Math.random()*2 + 1;
+					FP.alarm(time, SpawnEnemy);
+				}
 			}
 		}
 

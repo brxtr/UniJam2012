@@ -119,15 +119,33 @@ package
 
 		private function SpawnEnemy():void
 		{
-			var enemy:Enemy = new EnemyCymbal(FP.camera.x + FP.width, FP.height/2);
-			_enemies.push(enemy);
-			add(enemy);
-
 			//Spawn next enemy
-			if(!_safe)
+			if (Player.player.life > 0)
 			{
-				var time:Number = Math.random()*2 + 1;
-				FP.alarm(time, SpawnEnemy);
+				var prob:Number = Math.random()*100;
+				var enemy:Enemy;
+				if(prob > 95)
+				{
+					enemy = new EnemyBig(FP.camera.x + FP.width, FP.height/2);
+				}
+				else if( prob > 60)
+				{
+					enemy = new EnemyCymbal(FP.camera.x + FP.width, FP.height/2);
+				}
+				else
+				{
+					enemy = new EnemyMob(FP.camera.x + FP.width, FP.height/2);
+				}
+
+				_enemies.push(enemy);
+				add(enemy);
+
+				//Spawn next enemy
+				if(!_safe)
+				{
+					var time:Number = Math.random()*2 + 1;
+					FP.alarm(time, SpawnEnemy);
+				}
 			}
 		}
 
